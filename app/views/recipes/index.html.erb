@@ -1,16 +1,38 @@
-<h1>Searching Recipe for - <%= @search_term %></h1>
 
-<table border="1">
-  <tr>
-  	<th>Image</th>
-  	<th>Name</th>
-  	<th>Description</th>
-  </tr>
-  <% @recipes.each do |recipe| %>
-    <tr class=<%= cycle('even', 'odd') %>>
-      <td><%= image_tag(recipe["image_url"])%></td>
-      <td><%= recipe["title"] %></td>
-      <td><%= recipe["social_rank"] %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="container">
+<div class="row">
+    <div class="col-lg-12">
+    <div>
+        <h2>Search for a recipe today!</h2>
+        <p>Search up your favorite recipe, just put input the ingredients you want in it(commas between ingredients!) and voila!</p>
+    </div>
+    <div class="search container">
+        <%= form_tag recipes_index_path, method: :get, id: 'search' do %>
+            <%= label_tag :ingredient %>
+            <%= text_field_tag :search , '', placeholder: 'Enter what you\' hungry for' , :required => true %>
+            <%= submit_tag "Search", class: 'btn btn-success' %>
+        <% end %>
+    </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <h3>Searching Recipe for - <%= @search_term %></h3>
+
+        <table border="1">
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Description</th>
+        </tr>
+        <% @recipes.each do |recipe| %>
+            <tr class=<%= cycle('even', 'odd') %>>
+            <td><%= image_tag(recipe["image_url"])%></td>
+            <td><%= recipe["title"] %></td>
+            <td><%= recipe["social_rank"] %></td>
+            </tr>
+        <% end %>
+        </table>
+    </div>
+</div>
+<div>
